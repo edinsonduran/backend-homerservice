@@ -1,11 +1,13 @@
+require('dotenv').config();
 const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
 const bodyParser = require("body-parser")
 const rutas = require("./app/rutas")
+const port = process.env.PORT || 3000;
 
 class Servidor {
-  PUERTO = 3000;
+  PUERTO = port;
 
   constructor() {
     this.app = express();
@@ -45,7 +47,7 @@ class Servidor {
     this.app.use(cors());
   }
   inicio() {
-    this.app.listen(this.PUERTO, () => {
+    this.app.listen(this.PUERTO, "0.0.0.0", () => {
       console.log("Encendido en puerto: " + this.PUERTO
 
       );
